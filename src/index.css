@@ -20,13 +20,15 @@
 }
 
 body {
-  background-color: #ff9a9e; /* Trùng với màu nền gradient app để tránh lộ vạch đen */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100dvh;
+  background-color: var(--bg-gradient);
   margin: 0;
   color: var(--text-dark);
+}
+
+#root {
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
 }
 
 /* Mobile Wrapper - Forces desktop to look like mobile */
@@ -40,18 +42,7 @@ body {
   flex-direction: column;
 }
 
-@media (min-width: 768px) {
-  body {
-    background-color: #1a1a2e; /* Chỉ hiện nền đen trên PC */
-  }
-  .app-wrapper {
-    max-width: 414px;
-    height: 90vh;
-    border-radius: 40px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    border: 8px solid #333; /* Simulate phone bezel */
-  }
-}
+
 
 /* Utility Classes */
 .glass-panel {
