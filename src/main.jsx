@@ -2,6 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
+import { registerSW } from 'virtual:pwa-register'
+
+// Đăng ký Service Worker cho PWA để cài đặt như một App thực thụ
+if ('serviceWorker' in navigator) {
+  registerSW({ immediate: true })
+}
 
 window.addEventListener('error', (event) => {
   const root = document.getElementById('root');

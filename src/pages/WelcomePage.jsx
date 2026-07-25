@@ -121,7 +121,7 @@ export default function WelcomePage() {
           >
             <div style={{ position: 'absolute', top: '-50px', right: '-50px', width: '150px', height: '150px', background: 'rgba(255,255,255,0.2)', borderRadius: '50%', filter: 'blur(20px)' }}></div>
             <Heart size={48} color="white" fill="white" style={{ marginBottom: '16px', zIndex: 1, flexShrink: 0 }} />
-          <h3 style={{ fontSize: '20px', marginBottom: '8px', zIndex: 1 }}>Vibe</h3>
+          <h3 className="brand-text" style={{ fontSize: '24px', marginBottom: '8px', zIndex: 1 }}><span className="highlight-v">V</span>ibe</h3>
           <p style={{ opacity: 0.9, marginBottom: '24px', fontSize: '14px', textAlign: 'center', zIndex: 1 }}>Thẻ Tài khoản & Kết nối</p>
           
           <div style={{ background: 'white', padding: '16px', borderRadius: '16px', marginBottom: '16px', zIndex: 1 }}>
@@ -143,16 +143,15 @@ export default function WelcomePage() {
   }
 
   return (
-    <div className="page-container" style={{ alignItems: 'center' }}>
-      <div className="animate-fade-in" style={{ width: '100%', maxWidth: '400px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '24px', margin: 'auto' }}>
+    <div className="page-container" style={{ alignItems: 'center', paddingBottom: '40px' }}>
+      <div className="animate-fade-in" style={{ width: '100%', maxWidth: '400px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px', margin: '8vh auto auto auto' }}>
         
-        <div style={{ width: '80px', height: '80px', background: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 10px 20px rgba(255, 75, 130, 0.2)', flexShrink: 0 }}>
+        <div className="animate-heart-bounce" style={{ width: '80px', height: '80px', background: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 10px 20px rgba(255, 75, 130, 0.2)', flexShrink: 0, marginBottom: '8px' }}>
           <Heart size={40} color="var(--primary-color)" fill="var(--primary-color)" />
         </div>
 
         <div style={{ textAlign: 'center' }}>
-          <h1 style={{ fontSize: '28px', color: 'var(--text-dark)', marginBottom: '8px' }}>Vibe</h1>
-          <p style={{ color: '#666', lineHeight: '1.5', fontSize: '15px' }}>Đăng nhập siêu bảo mật bằng Mã QR.</p>
+          <h1 className="brand-text" style={{ fontSize: '36px', marginBottom: '8px' }}><span className="highlight-v">V</span>ibe</h1>
         </div>
 
         {error && (
@@ -178,7 +177,7 @@ export default function WelcomePage() {
              <button onClick={() => setIsCreating(false)} style={{ background: 'none', border: 'none', color: '#666', marginTop: '12px', cursor: 'pointer', fontWeight: 'bold' }}>Hủy</button>
            </div>
         ) : (
-          <div className="animate-fade-in" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div className="animate-fade-in" style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '16px' }}>
             <button className="btn-primary" onClick={() => setIsCreating(true)} style={{ padding: '16px', borderRadius: '16px', fontSize: '16px', width: '100%' }}>
               Tạo Tài Khoản Mới
             </button>
@@ -195,6 +194,8 @@ export default function WelcomePage() {
                 {loading ? 'Đang quét...' : <><ImageIcon size={20} /> Tôi đã có Ảnh Tài Khoản</>}
               </button>
             </div>
+            
+            <p style={{ color: '#666', lineHeight: '1.5', fontSize: '14px', textAlign: 'center', marginTop: '16px' }}>Đăng nhập siêu bảo mật bằng Mã QR.</p>
           </div>
         )}
 

@@ -20,11 +20,11 @@
 }
 
 body {
-  background-color: #1a1a2e;
+  background-color: #ff9a9e; /* Trùng với màu nền gradient app để tránh lộ vạch đen */
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 100dvh;
   margin: 0;
   color: var(--text-dark);
 }
@@ -32,9 +32,7 @@ body {
 /* Mobile Wrapper - Forces desktop to look like mobile */
 .app-wrapper {
   width: 100%;
-  max-width: 414px; /* iPhone Max width */
-  height: 100vh;
-  max-height: 896px; /* iPhone Max height */
+  height: 100dvh; /* Dùng dvh để fix lỗi thanh điều hướng trên mobile */
   background: var(--bg-gradient);
   position: relative;
   overflow: hidden;
@@ -43,7 +41,11 @@ body {
 }
 
 @media (min-width: 415px) {
+  body {
+    background-color: #1a1a2e; /* Chỉ hiện nền đen trên PC */
+  }
   .app-wrapper {
+    max-width: 414px;
     height: 90vh;
     border-radius: 40px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.4);
@@ -109,6 +111,15 @@ body {
   animation: fadeIn 0.4s ease forwards;
 }
 
+@keyframes heartBounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-15px) scale(1.1); }
+}
+
+.animate-heart-bounce {
+  animation: heartBounce 2s ease-in-out infinite;
+}
+
 .page-container {
   flex: 1;
   display: flex;
@@ -131,4 +142,29 @@ body {
 .msg-card:hover, .msg-card:active {
   opacity: 1 !important;
   transform: scale(1) !important;
+}
+
+/* Custom Brand Text for Vibe */
+.brand-text {
+  display: inline-flex;
+  align-items: center;
+  color: white;
+  font-weight: 900;
+  letter-spacing: 2px;
+  font-family: 'Inter', -apple-system, sans-serif;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.brand-text .highlight-v {
+  color: white;
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  margin-right: 2px;
+  box-shadow: none;
+  font-size: 1.8em;
+  line-height: 1;
+  font-family: 'Arial Rounded MT Bold', 'Nunito', 'Quicksand', 'Baloo 2', cursive, sans-serif;
+  text-shadow: 0 6px 16px rgba(255, 75, 130, 0.6);
+  font-style: italic;
 }

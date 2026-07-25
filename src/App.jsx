@@ -1,12 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import WelcomePage from './pages/WelcomePage';
 import HomePage from './pages/HomePage';
-import { Info, X } from 'lucide-react';
+import { Info, X, Download } from 'lucide-react';
 import './index.css';
 
 function App() {
   const [showIntro, setShowIntro] = useState(true);
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
+
+  useEffect(() => {
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Ngăn Chrome tự động hiện mini-infobar
+      e.preventDefault();
+      // Lưu trữ event để kích hoạt sau
+      setDeferredPrompt(e);
+    });
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        setDeferredPrompt(null);
+      }
+    } else {
+      alert("Để cài đặt trên iPhone: Chọn nút Chia sẻ (Share) -> Thêm vào MH chính (Add to Home Screen).");
+    }
+  };
 
   return (
     <Router>
@@ -23,8 +45,8 @@ function App() {
                 <button onClick={() => setShowIntro(false)} style={{ position: 'absolute', top: '16px', right: '16px', background: '#f5f5f5', border: 'none', width: '32px', height: '32px', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
                   <X size={16} color="#666" />
                 </button>
-                <h1 style={{ fontSize: '32px', marginBottom: '16px', color: 'var(--text-dark)', display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  Vibe 💖
+                <h1 style={{ fontSize: '36px', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div className="brand-text"><span className="highlight-v">V</span>ibe</div> 💖
                 </h1>
                 <p style={{ color: '#666', lineHeight: '1.5', marginBottom: '16px', fontSize: '13px' }}>
                   Ứng dụng nhắn tin bảo mật siêu tốc dành riêng cho các cặp đôi. Không cần email, số điện thoại. Kết nối 1-1 riêng tư 100%.
@@ -40,9 +62,17 @@ function App() {
                   </ul>
                 </div>
                 
-                <button className="btn-primary" onClick={() => setShowIntro(false)} style={{ width: '100%', padding: '14px', borderRadius: '16px', fontSize: '16px', fontWeight: 'bold' }}>
-                  Bắt đầu ngay
-                </button>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <button className="btn-primary" onClick={() => setShowIntro(false)} style={{ width: '100%', padding: '14px', borderRadius: '16px', fontSize: '16px', fontWeight: 'bold' }}>
+                    Bắt đầu ngay
+                  </button>
+                  <button 
+                    onClick={handleInstallClick}
+                    style={{ width: '100%', padding: '14px', borderRadius: '16px', fontSize: '15px', fontWeight: 'bold', background: '#ffe5e5', color: 'var(--primary-color)', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', cursor: 'pointer' }}
+                  >
+                    <Download size={18} /> Tải Vibe về điện thoại
+                  </button>
+                </div>
               </div>
             </div>
           )}
