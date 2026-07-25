@@ -575,6 +575,21 @@ export default function HomePage() {
               </form>
             </div>
             
+            {/* 2.5 NÚT LỊCH SỬ (Dời lên sát Input Area) */}
+            {isConnected && messages.length > 0 && (
+              <div style={{ width: '100%', maxWidth: '500px', margin: '8px auto 0', zIndex: 10 }}>
+                <button 
+                  onClick={() => {
+                    if (messages.length > 1) setShowHistory(!showHistory);
+                  }}
+                  disabled={messages.length <= 1}
+                  style={{ width: '100%', background: 'white', border: '1px solid #ddd', padding: '12px', borderRadius: '20px', fontSize: '14px', fontWeight: 'bold', color: messages.length > 1 ? '#666' : '#ccc', cursor: messages.length > 1 ? 'pointer' : 'default', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}
+                >
+                  {messages.length <= 1 ? 'Chưa có lịch sử cũ' : showHistory ? 'Ẩn bớt lịch sử' : `Xem lịch sử (${messages.length - 1}) ⬇️`}
+                </button>
+              </div>
+            )}
+            
             {/* 3. HISTORY MESSAGES */}
             {showHistory && messages.slice(1).map((msgObj) => {
               const readers = (msgObj.readBy || []).filter(r => r.id !== msgObj.senderId);
@@ -633,21 +648,6 @@ export default function HomePage() {
             </div>
         )}
       </div>
-
-      {/* BOTTOM FIXED AREA (Only History Toggle Button) */}
-      {isConnected && messages.length > 0 && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%', maxWidth: '500px', margin: '0 auto', zIndex: 10, padding: '0 16px 16px' }}>
-          <button 
-            onClick={() => {
-              if (messages.length > 1) setShowHistory(!showHistory);
-            }}
-            disabled={messages.length <= 1}
-            style={{ width: '100%', background: 'white', border: '1px solid #ddd', padding: '12px', borderRadius: '20px', fontSize: '14px', fontWeight: 'bold', color: messages.length > 1 ? '#666' : '#ccc', cursor: messages.length > 1 ? 'pointer' : 'default', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}
-          >
-            {messages.length <= 1 ? 'Chưa có lịch sử cũ' : showHistory ? 'Ẩn bớt lịch sử' : `Xem lịch sử (${messages.length - 1}) ⬇️`}
-          </button>
-        </div>
-      )}
 
       {/* Settings Modal */}
       {showSettings && (
