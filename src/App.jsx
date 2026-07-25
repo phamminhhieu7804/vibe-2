@@ -53,9 +53,8 @@ function App() {
                 </p>
                 
                 <div style={{ background: '#fff0f5', padding: '16px', borderRadius: '16px', marginBottom: '24px' }}>
-                  <h3 style={{ fontSize: '16px', marginBottom: '12px', color: 'var(--primary-color)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span>Tính năng v3.2:</span>
-                    <span style={{ fontSize: '12px', color: '#888', fontWeight: 'normal' }}>25/07/2026 21:12</span>
+                  <h3 style={{ fontSize: '16px', marginBottom: '12px', color: 'var(--primary-color)' }}>
+                    Tính năng v3.2 phiên bản mới nhất (25/07/2026 21:12)
                   </h3>
                   <ul style={{ color: '#555', paddingLeft: '20px', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13px' }}>
                     <li>🔒 Đăng nhập bằng <b>Ảnh Chìa Khóa</b> (QR).</li>
