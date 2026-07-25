@@ -53,7 +53,10 @@ function App() {
                 </p>
                 
                 <div style={{ background: '#fff0f5', padding: '16px', borderRadius: '16px', marginBottom: '24px' }}>
-                  <h3 style={{ fontSize: '16px', marginBottom: '12px', color: 'var(--primary-color)' }}>Tính năng v3.1:</h3>
+                  <h3 style={{ fontSize: '16px', marginBottom: '12px', color: 'var(--primary-color)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span>Tính năng v3.2:</span>
+                    <span style={{ fontSize: '12px', color: '#888', fontWeight: 'normal' }}>25/07/2026 21:12</span>
+                  </h3>
                   <ul style={{ color: '#555', paddingLeft: '20px', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13px' }}>
                     <li>🔒 Đăng nhập bằng <b>Ảnh Chìa Khóa</b> (QR).</li>
                     <li>🤝 <b>Hòm thư kết nối</b> siêu tốc 1 chạm.</li>
@@ -70,8 +73,11 @@ function App() {
                     onClick={handleInstallClick}
                     style={{ width: '100%', padding: '14px', borderRadius: '16px', fontSize: '15px', fontWeight: 'bold', background: '#ffe5e5', color: 'var(--primary-color)', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', cursor: 'pointer' }}
                   >
-                    <Download size={18} /> Tải Vibe về điện thoại
+                    <Download size={18} /> Tải Vibely về điện thoại
                   </button>
+                  <p style={{ textAlign: 'center', fontSize: '12px', color: '#999', marginTop: '8px' }}>
+                    Bản quyền © by Hiếu Phạm (Bonnie)
+                  </p>
                 </div>
               </div>
             </div>
