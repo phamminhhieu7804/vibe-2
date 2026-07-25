@@ -54,13 +54,15 @@ function App() {
                 
                 <div style={{ background: '#fff0f5', padding: '16px', borderRadius: '16px', marginBottom: '24px' }}>
                   <h3 style={{ fontSize: '16px', marginBottom: '12px', color: 'var(--primary-color)' }}>
-                    Tính năng v3.2 phiên bản mới nhất (25/07/2026 21:12)
+                    Tính năng phiên bản mới nhất (25/07/2026 23:30)
                   </h3>
                   <ul style={{ color: '#555', paddingLeft: '20px', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13px' }}>
                     <li>🔒 Đăng nhập bằng <b>Ảnh Chìa Khóa</b> (QR).</li>
                     <li>🤝 <b>Hòm thư kết nối</b> siêu tốc 1 chạm.</li>
                     <li>💬 Giao diện <b>News Feed</b> với hiệu ứng làm mờ tin nhắn cũ, Focus tin nhắn mới.</li>
                     <li>💔 Tích hợp tính năng <b>Ngắt kết nối</b> dứt khoát.</li>
+                    <li>🛡️ Update thêm <b>tính năng bảo mật</b> và kết nối.</li>
+                    <li>✨ cập nhập lại giao diện mới có thể kết bạn với nhiều người lột xác giao diện mới</li>
                   </ul>
                 </div>
                 

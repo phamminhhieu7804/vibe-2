@@ -14,6 +14,7 @@ export default function WelcomePage() {
   const [isCreating, setIsCreating] = useState(false);
   const [customId, setCustomId] = useState('');
   const [createdId, setCreatedId] = useState(null);
+  const [accountMode, setAccountMode] = useState('couple'); // couple, friends, both
   const cardRef = useRef(null);
 
   useEffect(() => {
@@ -33,6 +34,7 @@ export default function WelcomePage() {
     
     // Set created ID to show the download card
     setCreatedId(cleanId);
+    localStorage.setItem('pendingAccountMode', accountMode); // Lưu tạm chế độ
     setError(null);
   };
 
@@ -75,6 +77,10 @@ export default function WelcomePage() {
     try {
       const result = await scanQRCodeFromFile(file);
       if (result) {
+        if (result.startsWith('VIBE-')) {
+          setError("Đây là Mã Kết Bạn, không thể dùng để đăng nhập! Vui lòng chọn Ảnh Chìa Khóa bảo mật (Màu Đỏ).");
+          return;
+        }
         localStorage.setItem('userId', result);
         navigate('/home');
       } else {
@@ -122,7 +128,7 @@ export default function WelcomePage() {
             <div style={{ position: 'absolute', top: '-50px', right: '-50px', width: '150px', height: '150px', background: 'rgba(255,255,255,0.2)', borderRadius: '50%', filter: 'blur(20px)' }}></div>
             <Heart size={48} color="white" fill="white" style={{ marginBottom: '16px', zIndex: 1, flexShrink: 0 }} />
           <h3 className="brand-text" style={{ fontSize: '24px', marginBottom: '8px', zIndex: 1 }}><span className="highlight-v">V</span>ibely</h3>
-          <p style={{ opacity: 0.9, marginBottom: '24px', fontSize: '14px', textAlign: 'center', zIndex: 1 }}>Thẻ Tài khoản & Kết nối</p>
+          <p style={{ opacity: 0.9, marginBottom: '24px', fontSize: '14px', textAlign: 'center', zIndex: 1, fontWeight: 'bold', textTransform: 'uppercase' }}>TÀI KHOẢN ĐĂNG NHẬP</p>
           
           <div style={{ background: 'white', padding: '16px', borderRadius: '16px', marginBottom: '16px', zIndex: 1 }}>
              <QRCodeCanvas value={createdId} size={150} level="H" fgColor="#333333" includeMargin={true} />
@@ -135,7 +141,7 @@ export default function WelcomePage() {
           {loading ? 'Đang lưu...' : 'Tải Ảnh & Quay Lại Đăng Nhập'}
         </button>
         <p style={{ textAlign: 'center', marginTop: '16px', fontSize: '13px', color: '#888', flexShrink: 0 }}>
-          Bức ảnh này chính là Tài Khoản của bạn.<br/>Mất máy chỉ cần quét ảnh này là khôi phục 100%.
+          Bức ảnh này chính là Tài Khoản của bạn.<br/><b>TUYỆT ĐỐI KHÔNG CHIA SẺ CHO AI</b>. Chỉ dùng để khôi phục tài khoản.
         </p>
         </div>
       </div>
@@ -171,6 +177,9 @@ export default function WelcomePage() {
                onChange={(e) => setCustomId(e.target.value)}
                style={{ width: '100%', padding: '16px', borderRadius: '16px', border: '1px solid #ddd', fontSize: '16px', textAlign: 'center', outline: 'none', marginBottom: '12px', boxSizing: 'border-box' }}
              />
+             
+
+
              <button className="btn-primary" onClick={handleCreateNew} style={{ width: '100%', padding: '16px', borderRadius: '16px' }}>
                Tiếp tục
              </button>

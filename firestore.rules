@@ -23,5 +23,10 @@ service cloud.firestore {
         
       allow delete: if false;
     }
+
+    // Khớp với cấu trúc bảng tin (feed)
+    match /feed/{docId} {
+      allow read, write: if true;
+    }
   }
 }
