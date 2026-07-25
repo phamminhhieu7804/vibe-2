@@ -1,0 +1,27 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Khớp với cấu trúc người dùng
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+
+    // Khớp với cấu trúc: messages/{channelId}/msgs/{messageId}
+    match /messages/{channelId}/msgs/{messageId} {
+      
+      // Cho phép ĐỌC, CẬP NHẬT (để set read=true)
+      allow read, update: if true;
+      
+      // Cho phép TẠO MỚI nếu đủ trường
+      allow create: if 
+        request.resource.data.keys().hasAll(['text', 'senderId', 'senderName', 'read']) &&
+        request.resource.data.text is string &&
+        request.resource.data.text.size() > 0 &&
+        request.resource.data.text.size() <= 1000 &&
+        request.resource.data.read == false;
+        
+      allow delete: if false;
+    }
+  }
+}
