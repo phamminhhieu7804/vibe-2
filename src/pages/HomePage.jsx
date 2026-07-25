@@ -251,7 +251,7 @@ export default function HomePage() {
           <Settings size={24} color="var(--primary-color)" />
         </button>
         <div style={{ textAlign: 'center' }}>
-          <h2 className="brand-text" style={{ fontSize: '28px' }}><span className="highlight-v">V</span>ibe</h2>
+          <h2 className="brand-text" style={{ fontSize: '28px' }}><span className="highlight-v">V</span>ibely</h2>
         </div>
         <div style={{ width: '48px' }}></div> {/* Spacer for centering */}
       </div>
@@ -450,7 +450,7 @@ export default function HomePage() {
                 }}
               >
                 <div style={{ position: 'absolute', top: '-20px', right: '-20px', width: '100px', height: '100px', background: 'rgba(255,255,255,0.2)', borderRadius: '50%', filter: 'blur(10px)' }}></div>
-                <h4 className="brand-text" style={{ marginBottom: '12px', fontSize: '18px', zIndex: 1 }}><span className="highlight-v">V</span>ibe</h4>
+                <h4 className="brand-text" style={{ marginBottom: '12px', fontSize: '18px', zIndex: 1 }}><span className="highlight-v">V</span>ibely</h4>
                 <div style={{ background: 'white', padding: '12px', borderRadius: '12px', zIndex: 1 }}>
                   <QRCodeCanvas value={userId} size={120} level="H" fgColor="#333333" includeMargin={true} />
                 </div>

@@ -1,6 +1,6 @@
 {
-  "name": "Vibe",
-  "short_name": "Vibe",
+  "name": "Vibely",
+  "short_name": "Vibely",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -8,9 +8,9 @@
   "description": "Gửi yêu thương lên màn hình chính",
   "icons": [
     {
-      "src": "v-icon.svg",
+      "src": "vibely-logo.png",
       "sizes": "192x192 512x512",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ]

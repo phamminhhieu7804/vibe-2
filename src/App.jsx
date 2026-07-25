@@ -46,7 +46,7 @@ function App() {
                   <X size={16} color="#666" />
                 </button>
                 <h1 style={{ fontSize: '36px', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <div className="brand-text"><span className="highlight-v">V</span>ibe</div> 💖
+                  <div className="brand-text-gradient"><span className="highlight-v">V</span>ibely</div> 💖
                 </h1>
                 <p style={{ color: '#666', lineHeight: '1.5', marginBottom: '16px', fontSize: '13px' }}>
                   Ứng dụng nhắn tin bảo mật siêu tốc dành riêng cho các cặp đôi. Không cần email, số điện thoại. Kết nối 1-1 riêng tư 100%.

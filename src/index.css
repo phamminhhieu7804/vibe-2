@@ -168,3 +168,25 @@ body {
   text-shadow: 0 6px 16px rgba(255, 75, 130, 0.6);
   font-style: italic;
 }
+
+.brand-text-gradient {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 900;
+  letter-spacing: 2px;
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: linear-gradient(135deg, #ff4b82 0%, #ff8fa3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 4px 8px rgba(255, 75, 130, 0.25));
+}
+
+.brand-text-gradient .highlight-v {
+  font-size: 1.8em;
+  line-height: 1;
+  font-family: 'Arial Rounded MT Bold', 'Nunito', 'Quicksand', 'Baloo 2', cursive, sans-serif;
+  font-style: italic;
+  margin-right: 2px;
+}

@@ -10,17 +10,17 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
-        name: 'Vibe',
-        short_name: 'Vibe',
+        name: 'Vibely',
+        short_name: 'Vibely',
         description: 'Gửi yêu thương lên màn hình chính',
         theme_color: '#ff4b82',
         background_color: '#ffffff',
         display: 'standalone',
         icons: [
           {
-            src: 'v-icon.svg',
+            src: 'vibely-logo.png',
             sizes: '192x192 512x512',
-            type: 'image/svg+xml',
+            type: 'image/png',
             purpose: 'any maskable'
           }
         ]

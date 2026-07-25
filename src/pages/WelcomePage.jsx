@@ -121,7 +121,7 @@ export default function WelcomePage() {
           >
             <div style={{ position: 'absolute', top: '-50px', right: '-50px', width: '150px', height: '150px', background: 'rgba(255,255,255,0.2)', borderRadius: '50%', filter: 'blur(20px)' }}></div>
             <Heart size={48} color="white" fill="white" style={{ marginBottom: '16px', zIndex: 1, flexShrink: 0 }} />
-          <h3 className="brand-text" style={{ fontSize: '24px', marginBottom: '8px', zIndex: 1 }}><span className="highlight-v">V</span>ibe</h3>
+          <h3 className="brand-text" style={{ fontSize: '24px', marginBottom: '8px', zIndex: 1 }}><span className="highlight-v">V</span>ibely</h3>
           <p style={{ opacity: 0.9, marginBottom: '24px', fontSize: '14px', textAlign: 'center', zIndex: 1 }}>Thẻ Tài khoản & Kết nối</p>
           
           <div style={{ background: 'white', padding: '16px', borderRadius: '16px', marginBottom: '16px', zIndex: 1 }}>
@@ -151,7 +151,7 @@ export default function WelcomePage() {
         </div>
 
         <div style={{ textAlign: 'center' }}>
-          <h1 className="brand-text" style={{ fontSize: '36px', marginBottom: '8px' }}><span className="highlight-v">V</span>ibe</h1>
+          <h1 className="brand-text" style={{ fontSize: '36px', marginBottom: '8px' }}><span className="highlight-v">V</span>ibely</h1>
         </div>
 
         {error && (
