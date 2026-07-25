@@ -472,21 +472,21 @@ export default function HomePage() {
             <h2 style={{ fontSize: '20px', marginBottom: '12px' }}>Bạn chưa kết nối ai!</h2>
             <p style={{ color: '#666', fontSize: '14px', marginBottom: '24px' }}>Vào phần <b>Cài đặt (Góc trái)</b> để kết bạn và gửi lời mời Người yêu nhé.</p>
           </div>
+        ) : loadingChat ? (
+          <div style={{ color: '#888', margin: 'auto' }}>Đang tải bảng tin...</div>
         ) : (
-          loadingChat ? (
-             <div style={{ color: '#888', margin: 'auto' }}>Đang tải bảng tin...</div>
-          ) : messages.length === 0 ? (
-            <div className="glass-panel" style={{ width: '100%', aspectRatio: '1/1', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '32px', textAlign: 'center', borderRadius: '36px', boxShadow: '0 24px 48px rgba(0,0,0,0.1)' }}>
-              <Heart size={48} color="var(--primary-color)" fill="var(--primary-color)" style={{ opacity: 0.2, position: 'absolute', top: '32px', right: '32px' }} />
-              <h1 style={{ fontSize: '24px', fontWeight: '700', color: '#999', lineHeight: '1.4' }}>
-                Bảng tin trống! Đăng bức ảnh đầu tiên đi!
-              </h1>
-            </div>
-          ) : (
-            <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
-              
-              {/* LATEST MESSAGE */}
-              {(() => {
+          <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+            
+            {/* 1. STATE TRỐNG HOẶC TIN NHẮN MỚI NHẤT */}
+            {messages.length === 0 ? (
+              <div className="glass-panel" style={{ width: '100%', aspectRatio: '1/1', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '32px', textAlign: 'center', borderRadius: '36px', boxShadow: '0 24px 48px rgba(0,0,0,0.1)' }}>
+                <Heart size={48} color="var(--primary-color)" fill="var(--primary-color)" style={{ opacity: 0.2, position: 'absolute', top: '32px', right: '32px' }} />
+                <h1 style={{ fontSize: '24px', fontWeight: '700', color: '#999', lineHeight: '1.4' }}>
+                  Bảng tin trống! Đăng bức ảnh đầu tiên đi!
+                </h1>
+              </div>
+            ) : (
+              (() => {
                 const latestMsg = messages[0];
                 const readers = (latestMsg.readBy || []).filter(r => r.id !== latestMsg.senderId);
                 return (
@@ -547,37 +547,38 @@ export default function HomePage() {
                     )}
                   </div>
                 );
-              })()}
+              })()
+            )}
 
-              {/* INPUT AREA (Close to the Latest Message) */}
-              <div style={{ display: 'flex', gap: '12px', width: '100%', maxWidth: '500px', margin: '0 auto', zIndex: 10 }}>
-                <div style={{ position: 'relative' }}>
-                  <input type="file" accept="image/*" onChange={handleUploadImageForFeed} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0, cursor: 'pointer' }} />
-                  <button style={{ width: '54px', height: '54px', borderRadius: '24px', border: 'none', background: '#f0f0f0', color: '#666', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}>
-                    <ImageIcon size={24} />
-                  </button>
-                </div>
-                <form onSubmit={handleSendMessage} style={{ flex: 1, display: 'flex', gap: '12px' }}>
-                  <input
-                    type="text"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Viết phản hồi nhanh..."
-                    style={{ flex: 1, padding: '16px 20px', borderRadius: '24px', border: 'none', background: 'white', boxShadow: '0 8px 24px rgba(0,0,0,0.08)', fontSize: '15px', outline: 'none' }}
-                  />
-                  <button 
-                    type="submit" 
-                    disabled={!message.trim()}
-                    style={{ width: '54px', height: '54px', borderRadius: '24px', border: 'none', background: message.trim() ? 'var(--primary-color)' : '#ccc', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: message.trim() ? 'pointer' : 'default', boxShadow: message.trim() ? '0 8px 24px rgba(255,75,130,0.3)' : 'none', transition: 'all 0.3s' }}>
-                    <Send size={20} style={{ marginLeft: '4px' }} />
-                  </button>
-                </form>
+            {/* 2. INPUT AREA (Luôn hiện nếu đã kết nối, bất kể có tin nhắn hay chưa) */}
+            <div style={{ display: 'flex', gap: '12px', width: '100%', maxWidth: '500px', margin: '0 auto', zIndex: 10 }}>
+              <div style={{ position: 'relative', flexShrink: 0 }}>
+                <input type="file" accept="image/*" onChange={handleUploadImageForFeed} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0, cursor: 'pointer' }} />
+                <button style={{ width: '54px', height: '54px', borderRadius: '24px', border: 'none', background: '#f0f0f0', color: '#666', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}>
+                  <ImageIcon size={24} />
+                </button>
               </div>
-              
-              {/* History Messages */}
-              {showHistory && messages.slice(1).map((msgObj) => {
-                const readers = (msgObj.readBy || []).filter(r => r.id !== msgObj.senderId);
-                return (
+              <form onSubmit={handleSendMessage} style={{ flex: 1, display: 'flex', gap: '12px', minWidth: 0 }}>
+                <input
+                  type="text"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder="Viết phản hồi nhanh..."
+                  style={{ flex: 1, minWidth: 0, padding: '16px 20px', borderRadius: '24px', border: 'none', background: 'white', boxShadow: '0 8px 24px rgba(0,0,0,0.08)', fontSize: '15px', outline: 'none' }}
+                />
+                <button 
+                  type="submit" 
+                  disabled={!message.trim()}
+                  style={{ width: '54px', height: '54px', flexShrink: 0, borderRadius: '24px', border: 'none', background: message.trim() ? 'var(--primary-color)' : '#ccc', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: message.trim() ? 'pointer' : 'default', boxShadow: message.trim() ? '0 8px 24px rgba(255,75,130,0.3)' : 'none', transition: 'all 0.3s' }}>
+                  <Send size={20} style={{ marginLeft: '4px' }} />
+                </button>
+              </form>
+            </div>
+            
+            {/* 3. HISTORY MESSAGES */}
+            {showHistory && messages.slice(1).map((msgObj) => {
+              const readers = (msgObj.readBy || []).filter(r => r.id !== msgObj.senderId);
+              return (
                   <div key={msgObj.id} className="msg-card animate-fade-in" style={{
                     width: '100%',
                     maxWidth: '450px',
@@ -630,18 +631,20 @@ export default function HomePage() {
                 );
               })}
             </div>
-          )
         )}
       </div>
 
       {/* BOTTOM FIXED AREA (Only History Toggle Button) */}
-      {isConnected && messages.length > 1 && (
+      {isConnected && messages.length > 0 && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%', maxWidth: '500px', margin: '0 auto', zIndex: 10, padding: '0 16px 16px' }}>
           <button 
-            onClick={() => setShowHistory(!showHistory)}
-            style={{ width: '100%', background: 'white', border: '1px solid #ddd', padding: '12px', borderRadius: '20px', fontSize: '14px', fontWeight: 'bold', color: '#666', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}
+            onClick={() => {
+              if (messages.length > 1) setShowHistory(!showHistory);
+            }}
+            disabled={messages.length <= 1}
+            style={{ width: '100%', background: 'white', border: '1px solid #ddd', padding: '12px', borderRadius: '20px', fontSize: '14px', fontWeight: 'bold', color: messages.length > 1 ? '#666' : '#ccc', cursor: messages.length > 1 ? 'pointer' : 'default', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}
           >
-            {showHistory ? 'Ẩn bớt lịch sử' : `Xem lịch sử (${messages.length - 1}) ⬇️`}
+            {messages.length <= 1 ? 'Chưa có lịch sử cũ' : showHistory ? 'Ẩn bớt lịch sử' : `Xem lịch sử (${messages.length - 1}) ⬇️`}
           </button>
         </div>
       )}

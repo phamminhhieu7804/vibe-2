@@ -20,6 +20,7 @@ export const scanQRCodeFromFile = (file) => {
         canvas.width = width;
         canvas.height = height;
         const ctx = canvas.getContext('2d');
+        ctx.imageSmoothingEnabled = false; // Ngăn làm mờ mã QR khi resize
         ctx.drawImage(img, 0, 0, width, height);
         
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);

@@ -205,6 +205,28 @@ export default function WelcomePage() {
             </div>
             
             <p style={{ color: '#666', lineHeight: '1.5', fontSize: '14px', textAlign: 'center', marginTop: '16px' }}>Đăng nhập siêu bảo mật bằng Mã QR.</p>
+            
+            {/* Fallback Đăng nhập thủ công */}
+            <div style={{ marginTop: '16px', paddingTop: '24px', borderTop: '1px solid rgba(255,255,255,0.5)', width: '100%', textAlign: 'center' }}>
+              <p style={{ fontSize: '13px', color: '#666', marginBottom: '12px', fontWeight: 'bold' }}>Hoặc nhập mã thủ công nếu quét ảnh bị lỗi:</p>
+              <input 
+                type="text" 
+                placeholder="Nhập mã (VD: HIEU-123)"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                     const val = e.target.value.trim().toUpperCase();
+                     if (val.length > 2) {
+                       localStorage.setItem('userId', val);
+                       navigate('/home');
+                     } else {
+                       setError('Mã đăng nhập phải trên 3 ký tự!');
+                     }
+                  }
+                }}
+                style={{ width: '100%', padding: '16px', borderRadius: '16px', border: '1px solid #ddd', fontSize: '16px', textAlign: 'center', outline: 'none', background: 'rgba(255,255,255,0.7)' }}
+              />
+              <p style={{ fontSize: '11px', color: '#888', marginTop: '8px' }}>Nhập mã và nhấn Enter để vào ngay</p>
+            </div>
           </div>
         )}
 
